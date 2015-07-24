@@ -1,0 +1,306 @@
+<?xml version="1.0"?>
+
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+targetNamespace="TODOMIO.com"
+xmlns="TODOMIO.com"
+elementFormDefault="qualified">
+
+<!-- And finally, the building -->
+<xs:element name="building" type="buildingType"/>
+<!-- SIMPLE TYPES --> 
+<!-- name of something -->
+<!--<xs:element name="name" type="xs:string"/> -->
+<!-- address of a building  -->
+<!--<xs:element name="address" type="xs:string"/> -->
+<!-- city of a building -->
+<!--<xs:element name="city" type="xs:string"/> -->
+<!-- country of a building  -->
+<!--<xs:element name="country" type="xs:string"/> -->
+<!-- date of construction of a building -->
+<!--<xs:element name="construction_date" type="xs:date"/> -->
+<!-- Main Building Type-->
+<!--<xs:element name="main_type" type="xs:string"/> -->
+<!-- Building Type -->
+<!--<xs:element name="type" type="xs:string"/> -->
+<!-- source of a portal -->
+<!--<xs:element name="source" type="xs:string"/> -->
+<!-- target of a portal -->
+<!--<xs:element name="target" type="xs:string"/> -->
+
+<!-- ATTRIBUTES --> 
+<!-- coordinate of a point -->
+<!--<xs:attribute name="x" use="required" type="xs:decimal"/>
+<xs:attribute name="y" use="required" type="xs:decimal"/>
+<xsd:attribute name="id" use="required" type="xsd:ID"/> -->
+
+<!-- RESTRICTIONS --> 
+<!-- -->
+<xs:simpleType name="umType">
+	<xs:restriction base="xs:string">
+		<xs:enumeration value="m"/>
+		<xs:enumeration value="pixel"/>
+	</xs:restriction>
+</xs:simpleType>
+<!-- -->
+<xs:simpleType name="linesegmentClass">
+	<xs:restriction base="xs:string">
+		<xs:enumeration value="WALL"/>
+		<xs:enumeration value="PORTAL"/>
+		<xs:enumeration value="WINDOW"/>
+	</xs:restriction>
+</xs:simpleType>
+<!-- -->
+<xs:simpleType name="lineType">
+	<xs:restriction base="xs:string">
+		<xs:enumeration value="IMPLICIT"/>
+		<xs:enumeration value="EXPLICIT"/>
+	</xs:restriction>
+</xs:simpleType>
+<!-- -->
+<xs:simpleType name="portalDirectionType">
+	<xs:restriction base="xs:string">
+		<xs:enumeration value="IN"/>
+		<xs:enumeration value="OUT"/>
+		<xs:enumeration value="INOUT"/>
+		<xs:enumeration value="CLOSED"/>
+	</xs:restriction>
+</xs:simpleType>
+<!-- -->
+<xs:simpleType name="portalClass">
+	<xs:restriction base="xs:string">
+		<xs:enumeration value="HORIZONTAL"/>
+		<xs:enumeration value="VERTICAL"/>
+	</xs:restriction>
+</xs:simpleType>
+<!-- -->
+<xs:simpleType name="spaceFunctionType">
+	<xs:restriction base="xs:string">
+		<xs:enumeration value="CONNECTION"/>
+		<xs:enumeration value="FUNCTIONAL"/>
+	</xs:restriction>
+</xs:simpleType>
+
+
+<!-- COMPLEX TYPES -->
+<!-- -->
+<xs:complexType name="pointType">
+	<xs:attribute name="x" use="required" type="xs:decimal"/>
+	<xs:attribute name="y" use="required" type="xs:decimal"/>
+</xs:complexType>
+
+<!-- tag linesegmet: a linesegment-->
+<xs:complexType name="lineSegmentType">
+	<xs:sequence>
+		<xs:element name="point" type="pointType"/>
+		<xs:element name="point" type="pointType"/>
+		<xs:element name="class" type="linesegmentClass"/>
+		<xs:element name="type" type="lineType"/>
+		<xs:element name="thickness" type="xs:decimal" minOccurs=0 />
+	</xs:sequence>
+	<xs:attribute name="id" type="xs:ID"/>
+</xs:complexType>
+
+<!-- tag target: list of portal's target-->
+<xs:complexType name="targetType">
+	<xs:sequence>
+		<xs:element name="id" type="xs:ID" minOccurs="1" maxOccurs="unbounded"/>
+	</xs:sequence>
+</xs:complexType>
+
+<!-- tag portal: a portal-->
+<xs:complexType name="portalType">
+	<xs:sequence>
+		<xs:element name="id" type="xs:string"/>
+		<xs:element name="class" type="portalClass"/>
+		<xs:element name="type" type="lineType"/>
+		<xs:element name="direction" type="portalDirectionType"/>
+		<!-- source of a portal -->
+		<xs:element name="source" type="xs:string"/>
+		<!-- target of a portal -->
+		<xs:element name="target" type="targetType"/>
+	</xs:sequence>
+	<xs:attribute name="id" type="xs:ID"/>
+</xs:complexType>
+
+<!-- tag portals: list of portal-->
+<xs:complexType name="portalSType">
+	<xs:sequence>
+		<xs:element name="portal" type="portalType" maxOccurs="unbounded"/>
+	</xs:sequence>
+</xs:complexType>
+
+<!-- info on a space/floor/building: some metrics with the relevant characteristics of a space
+the "othes" string is a descriptive string of other features (more data should and could be included in this specification)
+TODO Lynch? -->
+<xs:complexType name="dataType">
+	<xs:sequence>
+		<xs:element name="area" type="xs:decimal"/>
+		<xs:element name="perimeter" type="xs:decimal"/>
+		<xs:element name="ratio" type="xs:decimal"/>
+		<xs:element name="others" type="xs:string"/>
+	</xs:sequence>
+</xs:complexType>
+
+<!-- tag lines: list of linesegments-->
+<xs:complexType name="space_representationType">
+	<xs:sequence>
+		<xs:element name="linesegment" type="lineSegmentType" maxOccurs="unbounded"/>
+	</xs:sequence>
+</xs:complexType>
+
+<!-- countour: list of consecutive points -->
+<xs:complexType name="bounding_polygonType">
+	<xs:sequence>
+		<xs:element name="point" type="pointType" maxOccurs="unbounded"/>
+	</xs:sequence>
+</xs:complexType>
+
+<!-- WRAPPED POINT -->
+<xs:complexType name="wrappedPointType">
+	<xs:sequence>
+		<xs:element name="point" type="pointType" />
+	</xs:sequence>
+</xs:complexType>
+
+<!-- bounding box type-->
+<xs:complexType name="boundingBoxType">
+	<xs:sequence>
+		<xs:element name="maxX" type="wrappedPointType" />
+		<xs:element name="maxY" type="wrappedPointType" />
+		<xs:element name="minX" type="wrappedPointType" />
+		<xs:element name="minY" type="wrappedPointType" />
+	</xs:sequence>
+</xs:complexType>
+
+<!-- labels type-->
+<xs:complexType name="labelsType">
+	<xs:sequence>
+		<xs:element name="type" type="spaceFunctionType" />
+		<xs:element name="label" type="xs:string" maxOccurs="unbounded" />
+	</xs:sequence>
+</xs:complexType>/Users/matteoluperto
+
+<!-- space type-->
+<xs:complexType name="spaceType">
+	<xs:sequence>
+		<xs:element name="labels" type="labelsType" />
+		<xs:element name="centroid" type="wrappedPointType" />
+		<xs:element name="boundingBox" type="boundingBoxType" minOccurs=0 />
+		<xs:element name="data" type="dataType" minOccurs="0"/>
+		<xs:element name="bounding_polygon" type="bounding_polygonType" minOccurs=0 />
+		<xs:element name="space_representation" type="space_representationType" minOccurs=0 />
+		<xs:element name="portals" type="portalSType" />
+	</xs:sequence>
+	<xs:attribute name="id" type="xs:ID"/>
+</xs:complexType>
+
+<!-- group type -->
+<xs:complexType name="groupType">
+	<xs:attribute name="id" type="xs:ID"/>
+	<xs:element name="name" type="xs:string" />
+	<xs:sequence>
+		<xs:element name="space" type="xs:ID" maxOccurs="unbounded"/>
+	</xs:sequence>
+</xs:complexType>
+
+<!-- groups type -->
+<xs:complexType name="groupsType">
+	<xs:sequence>
+		<xs:element name="group" type="groupType" minOccurs=0 maxOccurs="unbounded" />
+	</xs:sequence>
+</xs:complexType>
+
+<!-- floor type-->
+<xs:complexType name="floorType">
+	<xs:sequence>
+		<!-- first floor | ground floor | etc. as INT -->
+		<xs:element name="floor_number" type="xs:int" />
+		<xs:element name="centroid" type="wrappedPointType" />
+		<xs:element name="boundingBox" type="boundingBoxType" />
+		<xs:element name="data" type="dataType" minOccurs="0"/>
+		<xs:element name="bounding_polygon" type="bounding_polygonType" minOccurs=0  />
+		<xs:element name="space_representation" type="space_representationType"  minOccurs=0 />
+		<xs:element name="portals" type="portalSType" minOccurs=0  />
+		<xs:element name="space" type="spaceType" maxOccurs="unbounded" />
+		<xs:element name="groups" type="groupsType" minOccurs=0 />
+	</xs:sequence>
+	<xs:attribute name="id" type="xs:ID"/>
+</xs:complexType>
+
+<!-- SCALE PARAM : value + unity measure (um) -->
+<xs:complexType name="scaleParamType">
+	<xs:sequence>
+		<xs:element name="value" type="xs:int" />
+		<xs:element name="um" type="umType" />
+	</xs:sequence>
+</xs:complexType>
+
+<!-- SCALE TYPE : scale of the floorplan is represented / real  -->
+<xs:complexType name="scaleType">
+	<xs:sequence>
+		<xs:element name="represented_distance" type="scaleParamType" />
+		<xs:element name="real_distance" type="scaleParamType" />
+	</xs:sequence>
+</xs:complexType>
+
+<!-- location  -->
+<xs:complexType name="locationType">
+	<xs:sequence>
+		<xs:element name="address" type="xs:string"/>
+		<!-- city of a building -->
+		<xs:element name="city" type="xs:string"/>
+		<!-- country of a building  -->
+		<xs:element name="country" type="xs:string"/>
+	</xs:sequence>
+</xs:complexType>
+
+<!-- INFO TYPE: info on a building  -->
+<xs:complexType name="infoType">
+	<xs:sequence>
+		<xs:element name="location" type="locationType" minOccurs="0" />
+		<!-- date of construction of a building -->
+		<xs:element name="construction_date" type="xs:date"/>
+	</xs:sequence>
+</xs:complexType>
+
+<!-- building type list Type: a list of other possibles functions of the building -->
+<xs:complexType name="building_typelistType">
+	<xs:sequence>
+		<!-- Building Type -->
+		<xs:element name="type" type="xs:string" minOccurs="1" maxOccurs="unbounded" />
+	</xs:sequence>
+</xs:complexType>
+
+<!-- building type Type: the function of the building -->
+<xs:complexType name="building_typeType">
+	<xs:sequence>
+		<!-- Main Building Type-->
+		<xs:element name="type" type="xs:string" />
+		<!-- Other building Types -->
+		<xs:element name="other_types" type="building_typelistType" minOccurs="0" />
+	</xs:sequence>
+</xs:complexType>
+
+<!-- A Building -->
+<xs:complexType name="buildingType">
+	<xs:sequence>
+		<!-- name of the building -->
+		<xs:element name="name" type="xs:string" />
+		<xs:element name="scale" type="scaleType" />
+		<xs:element name="info" type="infoType" />
+		<xs:element name="building_type" type="building_typeType" />
+		<xs:element name="data" type="dataType" minOccurs="0" />
+		<xs:element name="floor" type="floorType" maxOccurs="unbounded" />
+	</xs:sequence>
+	<xs:attribute name="id" type="xs:ID"/>
+</xs:complexType>
+
+
+
+<!-- COMPLEX ELEMENTS -->
+<!--<xs:element name="point" type="pointType"/> -->
+<!--<xs:element name="lineSegment" type="lineSegmentType"/>
+-->
+
+
+</xs:schema>

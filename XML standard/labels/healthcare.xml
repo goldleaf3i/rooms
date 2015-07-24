@@ -1,0 +1,154 @@
+<?xml version="1.0"?>
+<buildingtype>
+  <type_name>
+    SCHOOL
+  </type_name>
+
+  TODO PER QUESTO FARE UNA RICERCA APPROFONDITA! 
+http://www.wbdg.org/design/hospital.php
+  <description>
+    TRADURRE QUESTA ROBA IN INGLESE
+    Divido in 3 categorie: funzionali (F), corridoi (C), di servizio (S) + ENTRANCE (E)
+    Funzionali: dove vengono effettuate le core-activities della tipologia
+    Corridoi: connettono stanze / no attività.
+    Servizio: di supporto alla core activities (es: mense o amministrativi)
+    Divido le stanze in 4 categorie di dimensione: S M B C
+    S SMALL
+    M MEDIUM
+    B BIG
+    C COLLECTIVE (es: openspace)
+    La stanza "centrale" della tipologia è la FUNZIONALE MEDIA (es: classe o ufficio)
+    QUesto mapping di base da poi il mapping specifico di tipologia.
+    Fonte di base: http://www.wbdg.org/design/buildingtypes.php + https://en.wikipedia.org/wiki/Architects%27_data + libri specifici di tipologia.
+  </description>
+  <labels>
+    <label>
+      <name>SMALL</name>
+      <type>R</type>
+      <letter>S</letter>
+      <function>F</function>
+      <description>
+        piccola stanza dove vengon effettuate attivita' tipiche della tipologia.
+      </description>
+      <color r="63" g="191" b="4"/>
+    </label>
+    <label>
+      <name>MEDIUM</name>
+      <type>R</type>
+      <letter>M</letter>
+      <function>F</function>
+      <description>
+        Una classe di una scuola
+      </description>
+      <color r="27" g="221" b="242"/>
+    </label>
+    <label>
+      <name>BIG</name>
+      <type>R</type>
+      <letter>B</letter>
+      <function>F</function>
+      <description>un laboratorio</description>
+      <color r="34" g="103" b="242"/>
+    </label>
+    <label>
+      <name>HALL</name>
+      <type>C</type>
+      <letter>H</letter>
+      <function>C</function>
+      <description>
+        HALL
+      </description>
+      <color r="242" g="71" b="56"/>
+    </label>
+      <label>
+      <name>CORRIDOR</name>
+      <type>C</type>
+      <letter>C</letter>
+      <function>C</function>
+      <description>
+        Un corridoio
+      </description>
+      <color r="242" g="135" b="5"/>
+    </label>
+    <label>
+      <name>SMALL SERVICE</name>
+      <type>R</type>
+      <letter>X</letter>
+      <function>S</function>
+      <description>
+        Piccolo deposito / fotocopiatrice / sgabuzzino 
+      </description>
+      <color r="189" g="189" b="189"/>
+    </label>
+    <label>
+      <name>MEDIUM SERVICE</name>
+      <type>R</type>
+      <letter>Y</letter>
+      <function>S</function>
+      <description>
+        Es: ufficio amministrativo / infermeria
+      </description>
+      <color r="140" g="140" b="139"/>
+    </label>
+    <label>
+      <name>BIG SERVICE</name>
+      <type>R</type>
+      <letter>Z</letter>
+      <function>S</function>
+      <description>
+        Es: grosso ufficio amministrativo tipo openspace, segreteria
+      </description>
+      <color r="88" g="88" b="89"/>
+    </label>
+    <label>
+      <name>ENTRANCE</name>
+      <type>E</type>
+      <letter>E</letter>
+      <function>E</function>
+      <description>
+        Ingresso/ascensore
+      </description>
+      <color r="38" g="128" b="128"/>
+    </label>
+    <label>
+      <name>BATHROOM</name>
+      <type>R</type>
+      <letter>T</letter>
+      <function>S</function>
+      <description>
+        Singolo bagno.
+      </description>
+      <color r="255" g="248" b="125"/>
+    </label>
+    <label>
+      <name>WASHROOM</name>
+      <type>C</type>
+      <letter>W</letter>
+      <function>C</function>
+      <description>
+        Antibagno (lavandini + specchi tipicamente)
+      </description>
+      <color r="232" g="202" b="167"/>
+    </label>
+    <label>
+      <name>COLLECTIVE</name>
+      <type>R</type>
+      <letter>O</letter>
+      <function>F</function>
+      <description>
+        Stanza "collettiva" funzionale: es una palestra o un auditorium
+      </description>
+      <color r="168" g="30" b="30"/>
+    </label>
+    <label>
+      <name>COLLECTIVE SERVICE</name>
+      <type>R</type>
+      <letter>K</letter>
+      <function>S</function>
+      <description>
+        Stanza "collettiva di servizio": es la mensa.
+      </description>
+      <color r="40" g="40" b="40"/>
+    </label>
+  </labels>
+</buildingtype>

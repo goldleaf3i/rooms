@@ -1,0 +1,207 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<building id="A0043012"
+	xmlns="TODOmiapaginapersonale"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="TODOmiapaginapersonale">
+	<name>
+		EDIFICIO DI PROVA
+	</name>
+
+	<scale>
+		<represented_distance>
+			<value> 1574.62 </value>
+			<um> pixel </um>
+		</represented_distance>
+		<real_distance>
+			<value> 10 </value>
+			<um> m </um>
+		</real_distance>
+	</scale>
+
+	<info>
+		<!-- OK OPZIONALE (ES NON ESISTE - TUTTE LE COSE ) POSSIBILIT ALTRE FEATURES -->
+		<location>
+			<address>
+				Via di Prova 12
+			</address>
+			<city>
+				Milano
+			</city>
+			<country>
+				Italia
+			</country>
+		</location>
+		<construction_date>
+			1980
+		</construction_date>
+	</info>
+	<building_type>
+		<!-- OK  BUILDING TYPE - TYPE (principali) - OTHERTYPES (OPT) CON SERIE DI TYPE -->
+		<main_type>
+			<!-- UNA SOLA, dal BAG CHE STA SOTTO -->
+		</main_type>
+		<type> <!-- UNA O PIU TIPOLOGIE!-->
+			<name/>
+		</type>
+	</building_type>
+	<floor id="50045366">
+		<floor_number>
+			first floor | second floor | mezzanine | etc (è un intero quindi 0 1 -1 2 3 4 )
+		</floor_number>
+		<!-- TODO  dire come viene definito. SE E' bounding box o qualcos'altro - oppure togliere -->
+		<centroid>
+			<point x="710602.227765" y="495500.922679"/>
+		</centroid>
+		<!-- TODO  OPTIONAL -->
+		<bounding_box>
+			<maxx>
+				<point x="710602.227765" y="495500.922679"/>	
+			</maxx>			
+			<maxy>
+				<point x="710602.227765" y="495500.922679"/>	
+			</maxy>
+			<minx>
+				<point x="710602.227765" y="495500.922679"/>	
+			</minx>
+			<miny>
+				<point x="710602.227765" y="495500.922679"/>	
+			</miny>
+		</bounding_box>
+		<!-- OK BOUNDING POLYGON - TODO DIRE CHE E' ORDERED-->
+		<contour> <!-- TODO  DA METTERE OPZIONALE -->
+			<point x="710602.227765" y="495500.922679"/>
+			<point x="710609.507455" y="495504.240225"/>
+			<point x="710615.727854" y="495490.590806"/>
+			<point x="710608.448164" y="495487.27326"/>
+		</contour>
+
+		<lines> <!-- OK SPACE REPRESENTATION  / LINE SEGMENTS -->
+			<!-- TODO  -->
+			<linesegment id="HEXNUMASDALLALLA"/>
+				<point x="710602.227765" y="495500.922679"/>
+				<point x="710602.227765" y="495500.922679"/>
+				<class>
+					[WALL|PORTAL|WINDOW]
+				</class>
+				<type>
+					[IMPLICIT|EXPLICIT]
+				</type>
+				<!-- OK AGGIUNGERE THICKNESS OPTIONAL -->
+			</linesegment>
+		</lines>
+		<!-- TODO PORTALS -->
+		<portals>
+			<portal>
+				<id>
+					id del linesegment
+				</id>
+				<class>
+					[HORIZONTAL|VERTICAL]
+				</class>
+				<type>
+					[IMPLICIT|EXPLICIT]
+				</type>
+				<direction><!-- OK  BOTH -> INOUT -->
+					[IN|OUT|BOTH|CLOSED]
+				</direction>
+				<source>
+					<!-- HEX DEL SOURCE(LA STANZA; NELLA STANZA QUESTO NON C'E) -->
+				</source>
+				<target>
+					<!-- HEX DEL TARGET -->
+					se è edificio, poi vado a prendere la stanza di "source"
+					+ target (es SCALE!)
+				</target>
+			</portal>
+		</portals>
+		<spaces>
+			<space id="HEX">
+				<labels>
+					<type>
+						[CONNECTION|FUNCTIONAL]
+					</type>
+					NOME LABEL
+					<label>
+						seconda label
+						<label>
+							terza label...
+						</label>
+					</label>
+				</labels>
+				<centroid>
+					<point x="710602.227765" y="495500.922679"/>
+				</centroid>
+				<bounding_box>
+					<maxx>
+						<point x="710602.227765" y="495500.922679"/>	
+					</maxx>			
+					<maxy>
+						<point x="710602.227765" y="495500.922679"/>	
+					</maxy>
+					<minx>
+						<point x="710602.227765" y="495500.922679"/>	
+					</minx>
+					<miny>
+						<point x="710602.227765" y="495500.922679"/>	
+					</miny>
+				</bounding_box>
+				<bounding_polygon>
+					<point x="710602.227765" y="495500.922679"/>
+					<point x="710609.507455" y="495504.240225"/>
+					<point x="710615.727854" y="495490.590806"/>
+					<point x="710608.448164" y="495487.27326"/>
+				</bounding_polygon>
+				<space_representation> 
+					<linesegment id="HEXNUMASDALLALLA"/>
+						<point x="710602.227765" y="495500.922679"/>
+						<point x="710602.227765" y="495500.922679"/>
+						<class>
+							[WALL|PORTAL]
+						</class>
+						<type>
+							[IMPLICIT|EXPLICIT]
+						</type>
+					</linesegment>
+				</space_representation>
+				<portals>
+					<portal>
+						<id>
+							id del linesegment
+						</id>id
+						<class>
+							[HORIZONTAL|VERTICAL]
+						</class>
+						<type>
+							[IMPLICIT|EXPLICIT]
+						</type>
+						<direction>
+							[IN|OUT|BOTH|CLOSED]
+						</direction>
+					</portal>
+					<target>
+						<!-- HEX DEL TARGET -->
+						<id></id>
+						<id></id>
+						se è edificio, poi vado a prendere la stanza di "source"
+						Ci possono essere piu target
+					</target>
+				</portals>
+				<!-- TODO E SE CI METTO QUI IL PUNTATORE A DEGLI OGGETTI? ELENCO DI OGGETTI CON POSIZIONE ED EVENTUALMENTE UN OGGETTO SOPRA (RICORSIVO) 
+				boundingbox - label - sottolista oggetti
+				-->
+			</space>
+		</spaces>	
+		<groups>
+			<group>
+				<!--  GRUPPO FUNZIONALE -->
+				<name> NOME DEL GRUPPO </name>
+				<id> id del gruppo </id>
+				<space> id dello space </space>
+				<space> id dello space </space>
+				<space> id dello space </space>
+			</group>
+		</groups>
+	</floor>
+</building>
+
