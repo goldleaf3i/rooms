@@ -1,8 +1,8 @@
 <?xml version="1.0"?>
 
 <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
-targetNamespace="TODOMIO.com"
-xmlns="TODOMIO.com"
+targetNamespace="https://github.com/goldleaf3i/rooms"
+xmlns="https://github.com/goldleaf3i/rooms"
 elementFormDefault="qualified">
 
 <!-- And finally, the building -->
@@ -80,9 +80,42 @@ elementFormDefault="qualified">
 	</xs:restriction>
 </xs:simpleType>
 
+<!-- FEATURES OF ROOMS AND ATTRIBUTES -->
+<!-- list of possible types for attributes -->
+<xs:simpleType name="rangeType">
+	<xs:restriction base="xs:string">
+		<xs:enumeration value="BOOLE"/>
+		<xs:enumeration value="INT"/>
+		<xs:enumeration value="REAL"/>
+		<xs:enumeration value="CATEGORICAL"/>
+		<xs:enumeration value="DESCRIPTION"/>
+		<xs:enumeration value="VECTOR_INT"/>
+		<xs:enumeration value="VECTOR_REAL"/>
+		<xs:enumeration value="VECTOR_BOOL"/>
+		<xs:enumeration value="VECTOR_CATEGORICAL"/>
+		<xs:enumeration value="MIXED"/>
+	</xs:restriction>
+</xs:simpleType>
+<!-- an attribute - for features -->
+<xs:complexType name="attributeType">
+	<xs:attribute name="range" use="required" type="rangeType"/>
+	<xs:attribute name="value" use="required" type="xs:string"/>
+</xs:complexType>
+<!-- a feature -->
+<xs:complexType name="featureType">
+	<xs:attribute name="name" use="required" type="xs:string"/>
+	<xs:element name="attribute" type="attributeType" />
+</xs:complexType>
+<!-- list of features -->
+<xs:complexType name="featuresType">
+	<xs:attribute name="name" use="required" type="xs:string"/>
+	<xs:sequence>
+		<xs:element name="feature" type="featureType" minOccurs="1" maxOccurs="unbounded"/>
+	</xs:sequence>
+</xs:complexType>
+
 
 <!-- COMPLEX TYPES -->
-<!-- -->
 <xs:complexType name="pointType">
 	<xs:attribute name="x" use="required" type="xs:decimal"/>
 	<xs:attribute name="y" use="required" type="xs:decimal"/>
@@ -190,23 +223,46 @@ TODO Lynch? -->
 		<xs:element name="bounding_polygon" type="bounding_polygonType" minOccurs=0 />
 		<xs:element name="space_representation" type="space_representationType" minOccurs=0 />
 		<xs:element name="portals" type="portalSType" />
+		<xs:element name="features" type="featuresType" minOccurs=0/>
 	</xs:sequence>
 	<xs:attribute name="id" type="xs:ID"/>
 </xs:complexType>
 
-<!-- group type -->
+<!-- RELATIONS BETWEEN MULTIPLE OBJECTS AND MULTIOBJECT FEATURES -->
+<!-- a tuple for relation -->
+<xs:complexType name="tupleType">
+	<xs:sequence>
+		<xs:element name="id" type="xs:ID" maxOccurs="unbounded"/>
+		<xs:element name="features" type="featuresType" minOccurs=0/>
+	</xs:sequence>
+</xs:complexType>
+<!-- a relation between multiple elements -->
+<xs:complexType name="relationType">
+	<xs:sequence>
+		<xs:element name="name" type="xs:string"/>
+		<xs:element name="tuple" type="tupleType" minOccurs=1 maxOccurs="unbounded" />
+	</xs:sequence>
+</xs:complexType>
+<!-- a set of relation -->
+<xs:complexType name="relationsType">
+	<xs:sequence>
+		<xs:element name="relation" type="relationType" minOccurs=0 maxOccurs="unbounded" />
+	</xs:sequence>
+</xs:complexType>
+<!-- group type: A group of features-->
 <xs:complexType name="groupType">
 	<xs:attribute name="id" type="xs:ID"/>
-	<xs:element name="name" type="xs:string" />
 	<xs:sequence>
+		<xs:element name="name" type="xs:string" />
+		<xs:element name="type" type="xs:string" />
 		<xs:element name="space" type="xs:ID" maxOccurs="unbounded"/>
+		<xs:element name="features" type="featuresType" minOccurs=0/>
 	</xs:sequence>
 </xs:complexType>
-
 <!-- groups type -->
 <xs:complexType name="groupsType">
 	<xs:sequence>
-		<xs:element name="group" type="groupType" minOccurs=0 maxOccurs="unbounded" />
+		<xs:element name="group_features" type="groupType" minOccurs=0 maxOccurs="unbounded" />
 	</xs:sequence>
 </xs:complexType>
 
@@ -222,7 +278,9 @@ TODO Lynch? -->
 		<xs:element name="space_representation" type="space_representationType"  minOccurs=0 />
 		<xs:element name="portals" type="portalSType" minOccurs=0  />
 		<xs:element name="space" type="spaceType" maxOccurs="unbounded" />
+		<xs:element name="features" type="featuresType" minOccurs=0/>
 		<xs:element name="groups" type="groupsType" minOccurs=0 />
+		<xs:element name="relations" type="relationsType" minOccurs=0 />
 	</xs:sequence>
 	<xs:attribute name="id" type="xs:ID"/>
 </xs:complexType>
