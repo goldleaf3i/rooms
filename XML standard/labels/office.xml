@@ -6,6 +6,7 @@
   <description>
     TRADURRE QUESTA ROBA IN INGLESE
     Divido in 3 categorie: funzionali (F), corridoi (C), di servizio (S) + ENTRANCE (E)
+    Le stanze di servizio si dividono in amministrativi (A, servizi S, igienici I) S:{A,S,I}
     Funzionali: dove vengono effettuate le core-activities della tipologia
     Corridoi: connettono stanze / no attività.
     Servizio: di supporto alla core activities (es: mense o amministrativi)
@@ -13,27 +14,28 @@
     S SMALL
     M MEDIUM
     B BIG
-    U COLLECTIVE (es: openspace)
+    U/C COLLECTIVE (es: openspace)
+    N not needed
     La stanza "centrale" della tipologia è la FUNZIONALE MEDIA (es: classe o ufficio)
     QUesto mapping di base da poi il mapping specifico di tipologia.
     Fonte di base: http://www.wbdg.org/design/buildingtypes.php + https://en.wikipedia.org/wiki/Architects%27_data + libri specifici di tipologia.
   </description>
   <labels>
     <label>
-      <name>CUBICLE</name>
+      <name>CONFERENCE ROOM</name>
       <type>R</type>
-      <letter>S</letter>
-      <size>S</size>
+      <letter>R</letter>
+      <size>M</size>
       <function>F</function>
       <description>
-        Small single-person cubicle.
+        Sala conferenze / meeting room di piccole dimensioni.
       </description>
       <color r="63" g="191" b="4"/>
     </label>
     <label>
       <name>OFFICE</name>
       <type>R</type>
-      <letter>M</letter>
+      <letter>O</letter>
       <size>M</size>
       <function>F</function>
       <description>
@@ -42,7 +44,7 @@
       <color r="27" g="221" b="242"/>
     </label>
     <label>
-      <name>LARGE OFFICE</name>
+      <name>SHARED OFFICE</name>
       <type>R</type>
       <letter>B</letter>
       <size>B</size>
@@ -55,7 +57,7 @@
     <label>
       <name>EXECUTIVE OFFICE</name>
       <type>R</type>
-      <letter>B</letter>
+      <letter>X</letter>
       <size>B</size>
       <function>F</function>
       <description>
@@ -64,13 +66,24 @@
       <color r="50" g="72" b="114"/>
     </label>
     <label>
-      <name>CONFERENCE ROOM</name>
+      <name>CONFERENCE HALL</name>
       <type>R</type>
-      <letter>F</letter>
-      <size>M</size>
+      <letter>M</letter>
+      <size>B</size>
       <function>F</function>
       <description>
-        The Conference/Classroom space types are areas used for formal meeting, training, and teleconference activities. 
+        The Conference space types are areas used for formal meeting, training, and teleconference activities. 
+      </description>
+      <color r="67" g="191" b="137"/>
+    </label>
+    <label>
+      <name>OPENSPACE</name>
+      <type>R</type>
+      <letter>M</letter>
+      <size>C</size>
+      <function>F</function>
+      <description>
+        Open space office. Big, with multiple desks / cubicles / ... 
       </description>
       <color r="67" g="191" b="137"/>
     </label>
@@ -78,7 +91,7 @@
       <name>LOBBY</name>
       <type>C</type>
       <letter>L</letter>
-      <size>H</size>
+      <size>C</size>
       <function>C</function>
       <description>
         The lobby space type includes foyers, entries to halls, and security screening areas at or near the entrance to a building or demarcated space, and are meant to welcome and direct tenants and visitors, control access, and provide exit ways from buildings. This space type is often designed with both secure and nonsecure areas. The lobby space type does not include elevator lobbies. Building lobbies often serve as the "public face" of building interiors
@@ -89,7 +102,7 @@
       <name>HALL</name>
       <type>C</type>
       <letter>H</letter>
-      <size>H</size>
+      <size>C</size>
       <function>C</function>
       <description>
         The atrium space type includes glazed courtyard spaces and multistoried spaces. Atria are typically used as key architectural features in main entries, public circulation areas or as special destinations within a building. Atrium design often involves skylights and generous glazing areas that provide an infusion of natural light which make them a prominent building areas well suited to serve ceremonial and social functions.
@@ -100,7 +113,7 @@
       <name>CORRIDOR</name>
       <type>C</type>
       <letter>C</letter>
-      <size>C</size>
+      <size>N</size>
       <function>C</function>
       <description>
         A corridor/hallway, an elongated passageway whose purpose is to provide access between rooms inside a building.
@@ -108,20 +121,9 @@
       <color r="242" g="135" b="5"/>
     </label>
     <label>
-      <name>CUBICLE CORRIDOR</name>
-      <type>C</type>
-      <letter>C</letter>
-      <size>C</size>
-      <function>C</function>
-      <description>
-        An elongated passageway inside an openspace with cubicles, used to reach the cubicles.
-      </description>
-      <color r="244" g="169" b="78"/>
-    </label>
-    <label>
       <name>CLOSET</name>
       <type>R</type>
-      <letter>X</letter>
+      <letter>S</letter>
       <size>S</size>
       <function>S</function>
       <description>
@@ -152,6 +154,7 @@
       <description>
         Generic large service room.
         E.G. Food Preparation Area, deposit, auditorim, physical fitness area, library.
+        CHILD CARE anche! TODO Completare!
       </description>
       <color r="88" g="88" b="89"/>
     </label>
@@ -159,7 +162,7 @@
       <name>ENTRANCE</name>
       <type>E</type>
       <letter>E</letter>
-      <size>E</size>
+      <size>N</size>
       <function>E</function>
       <description>
         Entrance, elevator or stairs.
@@ -167,11 +170,33 @@
       <color r="38" g="128" b="128"/>
     </label>
     <label>
+      <name>ELEVATOR</name>
+      <type>E</type>
+      <letter>G</letter>
+      <size>N</size>
+      <function>E</function>
+      <description>
+        Entrance, elevator or stairs.
+      </description>
+      <color r="20" g="113" b="113"/>
+    </label>
+    <label>
+      <name>STAIRS</name>
+      <type>E</type>
+      <letter>Q</letter>
+      <size>N</size>
+      <function>E</function>
+      <description>
+        Entrance, elevator or stairs.
+      </description>
+      <color r="91" g="190" b="190"/>
+    </label>
+    <label>
       <name>BATHROOM</name>
       <type>R</type>
       <letter>T</letter>
       <size>S</size>
-      <function>S</function>
+      <function>I</function>
       <description>
         A single bathroom.
       </description>
@@ -181,23 +206,12 @@
       <name>WASHROOM</name>
       <type>C</type>
       <letter>W</letter>
-      <size>C</size>
-      <function>C</function>
+      <size>N</size>
+      <function>I</function>
       <description>
         Small corridor with basins and connected to single toilets.
       </description>
       <color r="232" g="202" b="167"/>
-    </label>
-    <label>
-      <name>OPEN SPACE</name>
-      <type>R</type>
-      <letter>O</letter>
-      <size>C</size>
-      <function>F</function>
-      <description>
-        A big openspace, suitable for many people.
-      </description>
-      <color r="168" g="30" b="30"/>
     </label>
     <label>
       <name>CAFETERIA</name>
@@ -211,15 +225,72 @@
       <color r="40" g="40" b="40"/>
     </label>
     <label>
-      <name>CONFERENCE CENTER</name>
+      <name>COLLECTIVE SERVICE ROOM</name>
       <type>R</type>
       <letter>A</letter>
       <size>U</size>
       <function>S</function>
       <description>
-        Very large conference room, with many seats, for main events, presentations or conventions.
+        Very large conference room, with many seats, for main events, presentations or conventions. 
+        Library.
+        General shared space.
       </description>
       <color r="60" g="60" b="60"/>
+    </label>
+    <label>
+      <name>SMALL ADMINISTRATIVE</name>
+      <type>R</type>
+      <letter>J</letter>
+      <size>S</size>
+      <function>A</function>
+      <description>
+        Small administrative room.
+      </description>
+      <color r="190" g="185" b="78"/>
+    </label>
+    <label>
+      <name>MEDIUM ADMINISTRATIVE</name>
+      <type>R</type>
+      <letter>F</letter>
+      <size>M</size>
+      <function>A</function>
+      <description>
+        Medium administratieve room.
+      </description>
+      <color r="190" g="182" b="21"/>
+    </label>
+    <label>
+      <name>BIG ADMINISTRATIVE</name>
+      <type>R</type>
+      <letter>D</letter>
+      <size>B</size>
+      <function>A</function>
+      <description>
+        Big administrative room.
+      </description>
+      <color r="113" g="109" b="13"/>
+    </label>
+    <label>
+      <name>CONVENIENCE STORE</name>
+      <type>R</type>
+      <letter>I</letter>
+      <size>M</size>
+      <function>S</function>
+      <description>
+        MACCHINETTE / CAFFE
+      </description>
+      <color r="165" g="165" b="190"/>
+    </label>
+    <label>
+      <name>KITCHEM</name>
+      <type>R</type>
+      <letter>N</letter>
+      <size>B</size>
+      <function>S</function>
+      <description>
+        Shared kitchen.
+      </description>
+      <color r="178" g="122" b="190"/>
     </label>
   </labels>
 </buildingtype>

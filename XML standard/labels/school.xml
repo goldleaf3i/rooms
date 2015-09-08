@@ -16,6 +16,7 @@
     M MEDIUM
     B BIG
     U/C COLLECTIVE (es: openspace)
+    N Not relevant
     La stanza "centrale" della tipologia è la FUNZIONALE MEDIA (es: classe o ufficio)
     QUesto mapping di base da poi il mapping specifico di tipologia.
     Fonte di base: http://www.wbdg.org/design/buildingtypes.php + https://en.wikipedia.org/wiki/Architects%27_data + libri specifici di tipologia.
@@ -91,7 +92,7 @@
       <name>CORRIDOR</name>
       <type>C</type>
       <letter>C</letter>
-      <size>C</size>
+      <size>N</size>
       <function>C</function>
       <description>
         A corridor/hallway, an elongated passageway whose purpose is to provide access between rooms inside a building.
@@ -138,7 +139,7 @@
       <name>ENTRANCE</name>
       <type>E</type>
       <letter>E</letter>
-      <size>E</size>
+      <size>N</size>
       <function>E</function>
       <description>
         Entrance, elevator or stairs.
@@ -149,7 +150,7 @@
       <name>ELEVATOR</name>
       <type>E</type>
       <letter>L</letter>
-      <size>E</size>
+      <size>N</size>
       <function>E</function>
       <description>
         Entrance, elevator or stairs.
@@ -160,7 +161,7 @@
       <name>STAIRS</name>
       <type>E</type>
       <letter>Q</letter>
-      <size>E</size>
+      <size>N</size>
       <function>E</function>
       <description>
         Entrance, elevator or stairs.
@@ -182,7 +183,7 @@
       <name>WASHROOM</name>
       <type>C</type>
       <letter>W</letter>
-      <size>C</size>
+      <size>N</size>
       <function>C</function>
       <description>
         Small corridor with basins and connected to single toilets.
@@ -236,7 +237,7 @@
     <label>
       <name>SMALL ADMINISTRATIVE</name>
       <type>R</type>
-      <letter>H</letter>
+      <letter>J</letter>
       <size>S</size>
       <function>A</function>
       <description>

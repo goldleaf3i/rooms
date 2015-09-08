@@ -143,7 +143,8 @@ elementFormDefault="qualified">
 <!-- tag portal: a portal-->
 <xs:complexType name="portalType">
 	<xs:sequence>
-		<xs:element name="id" type="xs:string"/>
+		<!-- linesegment is the ID of the linesegment which is the portal; before it was called id --> 
+		<xs:element name="linesegment" type="xs:string"/>
 		<xs:element name="class" type="portalClass"/>
 		<xs:element name="type" type="lineType"/>
 		<xs:element name="direction" type="portalDirectionType"/>
@@ -318,6 +319,8 @@ TODO Lynch? -->
 		<xs:element name="location" type="locationType" minOccurs="0" />
 		<!-- date of construction of a building -->
 		<xs:element name="construction_date" type="xs:date"/>
+		<!-- iff image is resized from original image to another format, and the map is in this new format, this is the resize parameter -->
+		<xs:element name="image_scale" type="xs:int" minOccurs=0 />
 	</xs:sequence>
 </xs:complexType>
 
