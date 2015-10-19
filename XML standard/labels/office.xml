@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <buildingtype>
   <type_name>
-    SCHOOL
+    OFFICE
   </type_name>
   <description>
     TRADURRE QUESTA ROBA IN INGLESE
@@ -31,6 +31,17 @@
         Sala conferenze / meeting room di piccole dimensioni.
       </description>
       <color r="63" g="191" b="4"/>
+    </label>
+    <label>
+      <name>CUBICULE</name>
+      <type>R</type>
+      <letter>D</letter>
+      <size>S</size>
+      <function>F</function>
+      <description>
+        Small cubicule.
+      </description>
+      <color r="46" g="120" b="128"/>
     </label>
     <label>
       <name>OFFICE</name>
@@ -282,7 +293,7 @@
       <color r="165" g="165" b="190"/>
     </label>
     <label>
-      <name>KITCHEM</name>
+      <name>KITCHEN</name>
       <type>R</type>
       <letter>N</letter>
       <size>B</size>
@@ -291,6 +302,17 @@
         Shared kitchen.
       </description>
       <color r="178" g="122" b="190"/>
+    </label>
+    <label>
+      <name>RECEPTION</name>
+      <type>R</type>
+      <letter>U</letter>
+      <size>M</size>
+      <function>A</function>
+      <description>
+       Reception of the building
+      </description>
+      <color r="95" g="25" b="120"/>
     </label>
   </labels>
 </buildingtype>
