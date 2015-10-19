@@ -223,7 +223,18 @@
       </description>
       <color r="40" g="40" b="40"/>
     </label>
-        <label>
+    <label>
+      <name>KITCHEN</name>
+      <type>R</type>
+      <letter>N</letter>
+      <size>B</size>
+      <function>S</function>
+      <description>
+        Shared kitchen.
+      </description>
+      <color r="178" g="122" b="190"/>
+    </label>
+    <label>
       <name>LIBRARY</name>
       <type>R</type>
       <letter>K</letter>
