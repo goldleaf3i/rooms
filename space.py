@@ -6,14 +6,12 @@ import xml.dom.minidom
 
 class space(object) :
 
-	def __init__(self, label, space_representation = None, bounding_polygon = None, portals = None boundingbox = None, centroid = None ) :
+	def __init__(self, label, space_representation = None, bounding_polygon = None, portals = None, boundingbox = None, centroid = None ) :
 		"""
 		"""
 
 		# building_type è il nome del file da cui devo prendere l'xml oppure già l'xml
 
-		# spaces e' quello piu importante - gestisce le stanze
-		self.spaces = []
 		# connections e' il secondo piu importante, gestisce le connessioni
 		self.connections = []
 		self.name = str()
@@ -31,8 +29,8 @@ class space(object) :
 			'miny' : None
 		}
 		# contorno - potrebbe non esserci, e' un elenco (ordinato di punti)
-		self.contour = []
-		# lista di linesegments del contonro - potrebbe non esserci - e' un elenco
+		self.boundingpoly = space_representation
+		# lista di linesegments del contonro - potrebbe non esserci - e' un dizionario
 		self.linesegments = []
 		# lista di porte che danno all'esterno dell'edificio - potrebbe non esserci - e' un elenco
 		self.portals = []

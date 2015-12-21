@@ -14,7 +14,7 @@ point_vh_threshold = 20
 
 class linesegment(object) :
 
-	def __init__(self, points, mytype = None, uid = None) :
+	def __init__(self, points, mytype = None, myclass = None, features = none, uid = None) :
 		'''
 		A linesegment. Has a list of points.
 		'''
@@ -41,9 +41,12 @@ class linesegment(object) :
 			#TODO - come gestire gli errori?
 			pass
 
+		self.myclass = myclass
+		self.features = features 
+
 		self.direction = str()
 		p1 = self.points[0]
-		p2 = self.points[2]
+		p2 = self.points[1]
 		#TODO CHECK
 		if abs(p1[0]**2 +p2[0]**2) < point_vertical_threshold :
 			self.direction = ['H']

@@ -1,13 +1,39 @@
 #!
 import xml.dom.minidom
+import xml.etree.ElementTree as ET
 import uuid
 import matplotlib.pyplot as plt
 import matplotlib.colors as colors
 import matplotlib.cm as cmx
 
 
-def dict_to_xml(dictionary, doc, elem):
+
+
+def dict_to_xml(dictionary, doc):
 	'''
+	funziona con DOM
+	receives a dictionary as {"a": 12, "b" : {"C":4,"D":'asda'}} and prints
+	<a>
+		12
+	</a>
+	<b>
+		<c>4</c>
+		<D>asda</D>
+	</b>
+	'''
+
+	for i in dictionary.keys() :
+		tmp = ET.SubElement(doc,str(i))
+		if type(dictionary[i]) is dict :
+			dict_to_xml(dictionary[i],tmp)
+		else :
+			tmp.text = str(dictionary[i])
+
+
+
+def dict_to_xmlDOM(dictionary, doc, elem):
+	'''
+	funziona con DOM
 	receives a dictionary as {"a": 12, "b" : {"C":4,"D":'asda'}} and prints
 	<a>
 		12
